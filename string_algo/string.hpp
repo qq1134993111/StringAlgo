@@ -7,7 +7,7 @@
 */
 
 #include "trim.hpp"
-//#include "case_conv.hpp"
+#include "case_conv.hpp"
 //#include "predicate.hpp"
 
 //#include <boost/algorithm/string/find.hpp>

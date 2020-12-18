@@ -9,9 +9,14 @@
 
 int main()
 {
-	std::string str = "Hello   ";
+	std::string str = "  Hello   ";
+	
+	auto s1 = string_algo::trim_copy(str);
 	string_algo::trim(str);
-	auto s2 = string_algo::trim_copy(str);
+
+	auto s2 = string_algo::to_upper_copy(str);
+	string_algo::to_lower(str);
+
 	
     std::cout << "Hello World!\n";
 }

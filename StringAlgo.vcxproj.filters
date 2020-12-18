@@ -44,5 +44,11 @@
     <ClInclude Include="string_algo\detail\trim.hpp">
       <Filter>string_algo\detail</Filter>
     </ClInclude>
+    <ClInclude Include="string_algo\case_conv.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\detail\case_conv.hpp">
+      <Filter>string_algo\detail</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

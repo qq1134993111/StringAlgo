@@ -142,7 +142,9 @@
     <ClCompile Include="StringAlgo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="string_algo\case_conv.hpp" />
     <ClInclude Include="string_algo\classification.hpp" />
+    <ClInclude Include="string_algo\detail\case_conv.hpp" />
     <ClInclude Include="string_algo\detail\classification.hpp" />
     <ClInclude Include="string_algo\detail\trim.hpp" />
     <ClInclude Include="string_algo\predicate_facade.hpp" />
