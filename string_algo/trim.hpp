@@ -4,7 +4,7 @@
 #define STRING_TRIM_HPP
 
 #include <locale>
-
+#include "as_literal.hpp"
 #include "detail/trim.hpp"
 #include "classification.hpp"
 
@@ -50,13 +50,14 @@ namespace string_algo
 			const RangeT& Input,
 			PredicateT IsSpace)
 		{
+			auto lit_range(string_algo::as_literal(Input));
 
 			std::copy(
-				algorithm::detail::trim_begin(
-					std::begin(Input),
-					std::end(Input),
+				::boost::algorithm::detail::trim_begin(
+					::std::begin(lit_range),
+					::std::end(lit_range),
 					IsSpace),
-				std::end(Input),
+				::std::end(lit_range),
 				Output);
 
 			return Output;
@@ -157,12 +158,13 @@ namespace string_algo
 			const RangeT& Input,
 			PredicateT IsSpace)
 		{
+			auto lit_range(::string_algo::as_literal(Input));
 
 			std::copy(
-				std::begin(Input),
-				algorithm::detail::trim_end(
-					std::begin(Input),
-					std::end(Input),
+				::std::begin(lit_range),
+				::string_algo::algorithm::detail::trim_end(
+					::std::begin(lit_range),
+					::std::end(lit_range),
 					IsSpace),
 				Output);
 
@@ -268,17 +270,17 @@ namespace string_algo
 			const RangeT& Input,
 			PredicateT IsSpace)
 		{
-
+			auto lit_range(::string_algo::as_literal(Input));
 
 			auto TrimEnd =
-				algorithm::detail::trim_end(
-					begin(Input),
-					end(Input),
+				::string_algo::algorithm::detail::trim_end(
+					::std::begin(lit_range),
+					::std::end(lit_range),
 					IsSpace);
 
 			std::copy(
 				detail::trim_begin(
-					std::begin(Input), TrimEnd, IsSpace),
+					::std::begin(lit_range), TrimEnd, IsSpace),
 				TrimEnd,
 				Output
 			);

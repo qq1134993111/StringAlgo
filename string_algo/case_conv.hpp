@@ -43,10 +43,11 @@ namespace string_algo
 				const RangeT& Input,
 				const std::locale& Loc = std::locale())
 		{
-			return algorithm::detail::transform_range_copy(
+			return ::string_algo::algorithm::detail::transform_range_copy(
 				Output,
-				Input,
-				algorithm::detail::to_lowerF<RangeT>(Loc));
+				::string_algo::as_literal(Input),
+				::string_algo::algorithm::detail::to_lowerF<
+				typename RangeT::value_type >(Loc));
 		}
 
 		//! Convert to lower case
@@ -76,9 +77,10 @@ namespace string_algo
 			WritableRangeT& Input,
 			const std::locale& Loc = std::locale())
 		{
-			algorithm::detail::transform_range(
-				Input,
-				algorithm::detail::to_lowerF<typename WritableRangeT::value_type>(Loc));
+			::string_algo::algorithm::detail::transform_range(
+				::string_algo::as_literal(Input),
+				::string_algo::algorithm::detail::to_lowerF<
+				typename WritableRangeT::value_type >(Loc));
 		}
 
 		//  to_upper  -----------------------------------------------//
@@ -105,10 +107,11 @@ namespace string_algo
 				const RangeT& Input,
 				const std::locale& Loc = std::locale())
 		{
-			return  algorithm::detail::transform_range_copy(
+			return ::string_algo::algorithm::detail::transform_range_copy(
 				Output,
-				Input,
-				algorithm::detail::to_upperF<typename RangeT::value_type>(Loc));
+				::string_algo::as_literal(Input),
+				::string_algo::algorithm::detail::to_upperF<
+				typename RangeT::value_type >(Loc));
 		}
 
 		//! Convert to upper case
@@ -138,9 +141,10 @@ namespace string_algo
 			WritableRangeT& Input,
 			const std::locale& Loc = std::locale())
 		{
-			::algorithm::detail::transform_range(
-				Input,
-				algorithm::detail::to_upperF<typename WritableRangeT::value_type>(Loc));
+			::string_algo::algorithm::detail::transform_range(
+				::string_algo::as_literal(Input),
+				::string_algo::algorithm::detail::to_upperF<
+				typename WritableRangeT::value_type >(Loc));
 		}
 
 	} // namespace algorithm

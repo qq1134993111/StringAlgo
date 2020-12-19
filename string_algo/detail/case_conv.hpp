@@ -105,10 +105,10 @@ namespace string_algo
 			{
 				/*	return SequenceT(
 						::boost::make_transform_iterator(
-							::boost::begin(Input),
+							::std::begin(Input),
 							Functor),
 						::boost::make_transform_iterator(
-							::boost::end(Input),
+							::std::end(Input),
 							Functor));*/
 
 				SequenceT s;
