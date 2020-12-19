@@ -50,5 +50,29 @@
     <ClInclude Include="string_algo\detail\case_conv.hpp">
       <Filter>string_algo\detail</Filter>
     </ClInclude>
+    <ClInclude Include="string_algo\as_literal.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\compare.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\constants.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\finder.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\predicate.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\detail\finder.hpp">
+      <Filter>string_algo\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\detail\predicate.hpp">
+      <Filter>string_algo\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\find.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

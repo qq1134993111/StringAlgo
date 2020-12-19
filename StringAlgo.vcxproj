@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,11 +143,19 @@
     <ClCompile Include="StringAlgo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="string_algo\as_literal.hpp" />
     <ClInclude Include="string_algo\case_conv.hpp" />
     <ClInclude Include="string_algo\classification.hpp" />
+    <ClInclude Include="string_algo\compare.hpp" />
+    <ClInclude Include="string_algo\constants.hpp" />
     <ClInclude Include="string_algo\detail\case_conv.hpp" />
     <ClInclude Include="string_algo\detail\classification.hpp" />
+    <ClInclude Include="string_algo\detail\finder.hpp" />
+    <ClInclude Include="string_algo\detail\predicate.hpp" />
     <ClInclude Include="string_algo\detail\trim.hpp" />
+    <ClInclude Include="string_algo\find.hpp" />
+    <ClInclude Include="string_algo\finder.hpp" />
+    <ClInclude Include="string_algo\predicate.hpp" />
     <ClInclude Include="string_algo\predicate_facade.hpp" />
     <ClInclude Include="string_algo\string.hpp" />
     <ClInclude Include="string_algo\trim.hpp" />

@@ -53,7 +53,7 @@ namespace string_algo
 			auto lit_range(string_algo::as_literal(Input));
 
 			std::copy(
-				::boost::algorithm::detail::trim_begin(
+				::string_algo::algorithm::detail::trim_begin(
 					::std::begin(lit_range),
 					::std::end(lit_range),
 					IsSpace),
