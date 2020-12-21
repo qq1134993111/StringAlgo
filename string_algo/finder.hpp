@@ -49,15 +49,14 @@ namespace string_algo {
         */
         template<typename RangeT,typename PredicateT>
         inline detail::first_finderF<
-            typename std::span<typename RangeT::value_type>,
+            typename  RangeT::iterator,
             PredicateT>
         first_finder( 
             const RangeT& Search, PredicateT Comp )
         {
             return 
                 detail::first_finderF<
-                    typename 
-                        std::span<typename RangeT::value_type>,
+                    typename RangeT::iterator,
                     PredicateT>( ::string_algo::as_literal(Search), Comp );
         }
 

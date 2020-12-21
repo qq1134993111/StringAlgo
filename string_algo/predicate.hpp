@@ -208,7 +208,7 @@ namespace string_algo {
             
             // Use the temporary variable to make VACPP happy
             auto span = ::string_algo::algorithm::first_finder(lit_test, Comp)(::std::begin(lit_input), ::std::end(lit_input));
-            bool bResult=(!span.empty());
+            bool bResult = (!span.empty());
             return bResult;
         }
 

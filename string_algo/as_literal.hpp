@@ -15,133 +15,165 @@
 
 namespace string_algo
 {
-    namespace range_detail
-    {
-        inline std::size_t length( const char* s )
-        {
-            return strlen( s );
-        }
+	namespace range_detail
+	{
+		struct  CHAR_PTR_TYPE {};
+		struct  CONTAINER_TYPE {};
+		struct  SPAN_TYPE {};
+
+		template<typename T>
+		struct RANG_TRAITS
+		{
+			using type = CONTAINER_TYPE;
+		};
+
+		template<>
+		struct RANG_TRAITS<char>
+		{
+			using  type = CHAR_PTR_TYPE;
+		};
+
+		template<>
+		struct RANG_TRAITS<const char>
+		{
+			using  type = CHAR_PTR_TYPE;
+		};
 
 #ifndef NO_CXX11_CHAR16_T
-        inline std::size_t length( const char16_t* s )
-        {
-            return std::char_traits<char16_t>::length( s );
-        }
+		template<>
+		struct RANG_TRAITS<char16_t>
+		{
+			using  type = CHAR_PTR_TYPE;
+		};
+
+		template<>
+		struct RANG_TRAITS<const char16_t>
+		{
+			using  type = CHAR_PTR_TYPE;
+		};
 #endif
 
 #ifndef NO_CXX11_CHAR32_T
-        inline std::size_t length( const char32_t* s )
-        {
-            return std::char_traits<char32_t>::length( s );
-        }
+		template<>
+		struct RANG_TRAITS<char32_t>
+		{
+			using  type = CHAR_PTR_TYPE;
+		};
+
+		template<>
+		struct RANG_TRAITS<const char32_t>
+		{
+			using  type = CHAR_PTR_TYPE;
+		};
 #endif
 
 #ifndef NO_CWCHAR
-        inline std::size_t length( const wchar_t* s )
-        {
-            return wcslen( s );
-        }
+		template<>
+		struct RANG_TRAITS<wchar_t>
+		{
+			using  type = CHAR_PTR_TYPE;
+		};
+
+		template<>
+		struct RANG_TRAITS<const wchar_t>
+		{
+			using  type = CHAR_PTR_TYPE;
+		};
 #endif
 
-        //
-        // Remark: the compiler cannot choose between T* and T[sz]
-        // overloads, so we must put the T* internal to the
-        // unconstrained version.
-        //
+		template<typename T>
+		struct RANG_TRAITS<std::span<T>>
+		{
+			using  type = SPAN_TYPE;
+		};
 
-        inline bool is_char_ptr( char* )
-        {
-            return true;
-        }
+		template<typename T>
+		struct RANG_TRAITS<const std::span<T>>
+		{
+			using  type = SPAN_TYPE;
+		};
 
-        inline bool is_char_ptr( const char* )
-        {
-            return true;
-        }
+
+		inline std::size_t length(const char* s)
+		{
+			return strlen(s);
+		}
 
 #ifndef NO_CXX11_CHAR16_T
-        inline bool is_char_ptr( char16_t* )
-        {
-            return true;
-        }
-
-        inline bool is_char_ptr( const char16_t* )
-        {
-            return true;
-        }
+		inline std::size_t length(const char16_t* s)
+		{
+			return std::char_traits<char16_t>::length(s);
+		}
 #endif
 
 #ifndef NO_CXX11_CHAR32_T
-        inline bool is_char_ptr( char32_t* )
-        {
-            return true;
-        }
-
-        inline bool is_char_ptr( const char32_t* )
-        {
-            return true;
-        }
+		inline std::size_t length(const char32_t* s)
+		{
+			return std::char_traits<char32_t>::length(s);
+		}
 #endif
 
 #ifndef NO_CWCHAR
-        inline bool is_char_ptr( wchar_t* )
-        {
-            return true;
-        }
-
-        inline bool is_char_ptr( const wchar_t* )
-        {
-            return true;
-        }
+		inline std::size_t length(const wchar_t* s)
+		{
+			return wcslen(s);
+		}
 #endif
 
-        template< class T >
-        inline long is_char_ptr( const T& /* r */ )
-        {
-            return 0L;
-        }
 
-        template< class T >
-        inline std::span<T>
-        make_range( T* const r, bool )
-        {
-            return std::span<T>( r, r + length(r) );
-        }
+		template< class T >
+		inline std::span<T>
+			make_range(T* const r, CHAR_PTR_TYPE)
+		{
+			return std::span<T>(r, r + length(r));
+		}
 
-        template< class T >
-        inline std::span<typename T::value_type>
-        make_range( T& r, long )
-        {
-            return std::span<typename  T::value_type>( r );
-        }
+		template< class T >
+		inline auto make_range(T& r, CONTAINER_TYPE)
+		{
+			if constexpr (std::is_const_v<T>)
+			{
+				return	std::span<std::add_const_t<typename T::value_type>>(r);
+			}
+			else
+			{
+				return	std::span<typename T::value_type>(r);
+			}
 
-    }
+		}
 
-    template< class Range >
-    inline std::span<typename Range::value_type>
-    as_literal( Range& r )
-    {
-        return range_detail::make_range( r, range_detail::is_char_ptr(r) );
-    }
 
-    template< class Range >
-    inline  std::span<typename std::add_const_t<Range>::value_type>
-    as_literal( const Range& r )
-    {
-        return range_detail::make_range( r, range_detail::is_char_ptr(r) );
-    }
+		template< class T >
+		inline auto make_range(T& r, SPAN_TYPE)
+		{
+			return r;
+		}
+	}
 
-    template< class Char, std::size_t sz >
-    inline std::span<Char> as_literal( Char (&arr)[sz] )
-    {
-        return range_detail::make_range( arr, range_detail::is_char_ptr(arr) );
-    }
+	template< class Range >
+	inline auto as_literal(Range& r)
+	{
+		return range_detail::make_range(r, typename range_detail::RANG_TRAITS<Range>::type());
+	}
 
-    template< class Char, std::size_t sz >
-    inline std::span<const Char> as_literal( const Char (&arr)[sz] )
-    {
-        return range_detail::make_range( arr, range_detail::is_char_ptr(arr) );
-    }
+	template< class Range >
+	inline  std::span<std::add_const_t<typename Range::value_type>>
+		as_literal(const Range& r)
+	{
+		return range_detail::make_range<const Range>(r, typename range_detail::RANG_TRAITS<Range>::type());
+	}
+
+	template< class Char, std::size_t sz >
+	inline std::span<Char> as_literal(Char(&arr)[sz])
+	{
+		return range_detail::make_range(arr, typename range_detail::RANG_TRAITS<std::decay_t<Char>>::type());
+	}
+
+	template< class Char, std::size_t sz >
+	inline std::span<const Char> as_literal(const Char(&arr)[sz])
+	{
+		return range_detail::make_range(arr, typename range_detail::RANG_TRAITS<std::decay_t<Char>>::type());
+	}
 }
 
 #endif

@@ -36,12 +36,12 @@ namespace string_algo {
 
                 // Operation
                 template< typename ForwardIteratorT >
-                std::span<typename  ForwardIteratorT::value_type>
+                std::span<const typename ForwardIteratorT::value_type>
                 operator()(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End ) const
                 {
-                    typedef std::span<typename  ForwardIteratorT::value_type> result_type;
+                    typedef std::span<const typename ForwardIteratorT::value_type> result_type;
                     typedef ForwardIteratorT input_iterator_type;
 
                     // Outer loop
@@ -72,7 +72,8 @@ namespace string_algo {
                 }
 
             private:
-                std::span<typename  search_iterator_type::value_type> m_Search;
+              
+            	std::span<const typename search_iterator_type::value_type> m_Search;
                 PredicateT m_Comp;
             };
 
