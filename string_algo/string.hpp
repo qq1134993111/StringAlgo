@@ -9,8 +9,7 @@
 #include "trim.hpp"
 #include "case_conv.hpp"
 #include "predicate.hpp"
-
-//#include <boost/algorithm/string/find.hpp>
+#include "find.hpp"
 //#include <boost/algorithm/string/split.hpp>
 //#include <boost/algorithm/string/join.hpp>
 //#include <boost/algorithm/string/replace.hpp>

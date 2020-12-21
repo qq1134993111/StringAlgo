@@ -104,12 +104,12 @@ namespace string_algo {
 
                 // Operation
                 template< typename ForwardIteratorT >
-                std::span<typename  ForwardIteratorT::value_type>
+                std::span<const typename ForwardIteratorT::value_type>
                 operator()(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End ) const
                 {
-                    typedef std::span<typename  ForwardIteratorT::value_type> result_type;
+                    typedef std::span<const typename  ForwardIteratorT::value_type> result_type;
 
                     if( m_Search.empty() )
                         return result_type( End, End );
@@ -123,13 +123,13 @@ namespace string_algo {
             private:
                 // forward iterator
                 template< typename ForwardIteratorT >
-                std::span<typename  ForwardIteratorT::value_type>
+                std::span<const typename  ForwardIteratorT::value_type>
                 findit(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End,
                     std::forward_iterator_tag ) const
                 {
-                    typedef std::span<typename  ForwardIteratorT::value_type> result_type;
+                    typedef std::span<const typename  ForwardIteratorT::value_type> result_type;
 
                     first_finder_type first_finder(
                         m_Search.begin(), m_Search.end(), m_Comp );
@@ -148,13 +148,13 @@ namespace string_algo {
 
                 // bidirectional iterator
                 template< typename ForwardIteratorT >
-                std::span<typename  ForwardIteratorT::value_type>
+                std::span<const typename  ForwardIteratorT::value_type>
                 findit(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End,
                     std::bidirectional_iterator_tag ) const
                 {
-                    typedef std::span<typename  ForwardIteratorT::value_type> result_type;
+                    typedef std::span<const typename  ForwardIteratorT::value_type> result_type;
                     typedef ForwardIteratorT input_iterator_type;
 
                     // Outer loop
@@ -182,7 +182,7 @@ namespace string_algo {
                 }
 
             private:
-                std::span<typename  search_iterator_type::value_type> m_Search;
+                std::span<const typename  search_iterator_type::value_type> m_Search;
                 PredicateT m_Comp;
             };
 
@@ -224,7 +224,7 @@ namespace string_algo {
 
                 // Operation
                 template< typename ForwardIteratorT >
-                std::span<typename  ForwardIteratorT::value_type>
+                std::span<const typename ForwardIteratorT::value_type>
                 operator()(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End ) const
@@ -243,13 +243,13 @@ namespace string_algo {
             private:
                 // Implementation helpers
                 template< typename ForwardIteratorT >
-                std::span<typename  ForwardIteratorT::value_type>
+                std::span<const typename ForwardIteratorT::value_type>
                 find_forward(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End,
                     unsigned int N) const
                 {
-                    typedef std::span<typename  ForwardIteratorT::value_type> result_type;
+                    typedef std::span<const typename  ForwardIteratorT::value_type> result_type;
 
                     // Sanity check
                     if( m_Search.empty() )
@@ -266,7 +266,7 @@ namespace string_algo {
                         // find next match
                         M=first_finder( ::std::end(M), End );
 
-                        if ( !M )
+                        if ( !M.empty() )
                         {
                             // Subsequence not found, return
                             return M;
@@ -277,13 +277,13 @@ namespace string_algo {
                 }
 
                 template< typename ForwardIteratorT >
-                std::span<typename  ForwardIteratorT::value_type>
+                std::span<const typename ForwardIteratorT::value_type>
                 find_backward(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End,
                     unsigned int N) const
                 {
-                    typedef std::span<typename  ForwardIteratorT::value_type> result_type;
+                    typedef std::span<const typename  ForwardIteratorT::value_type> result_type;
 
                     // Sanity check
                     if( m_Search.empty() )
@@ -300,7 +300,7 @@ namespace string_algo {
                         // find next match
                         M=last_finder( Begin, ::std::begin(M) );
 
-                        if ( !M )
+                        if ( !M.empty() )
                         {
                             // Subsequence not found, return
                             return M;
@@ -312,7 +312,7 @@ namespace string_algo {
 
 
             private:
-                std::span<typename  search_iterator_type::value_type> m_Search;
+                std::span<const typename search_iterator_type::value_type> m_Search;
                 int m_Nth;
                 PredicateT m_Comp;
             };

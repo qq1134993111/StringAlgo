@@ -70,6 +70,14 @@ int main()
 	assert(b);
 	b = string_algo::iequals("abc", "AbC");
 	assert(b);
+
+	auto span=string_algo::find_first("hello word", "word");
+
+	auto span2 = string_algo::ifind_last("hello word", "wOrD");
+
+	auto span3 = string_algo::ifind_nth("hello world Word","worD",1);
+	
+	auto r=boost::find_first("hello", "ll");
 	
     std::cout << "Hello World!\n";
 }

@@ -34,7 +34,7 @@ namespace string_algo {
 						the input parameter.
 				*/
 		template<typename RangeT, typename FinderT>
-		inline std::span<typename RangeT::value_type>
+		inline auto
 			find(
 				RangeT& Input,
 				const FinderT& Finder)
@@ -61,12 +61,12 @@ namespace string_algo {
 					  \note This function provides the strong exception-safety guarantee
 				*/
 		template<typename Range1T, typename Range2T>
-		inline std::span<typename Range1T::value_type>
+		inline auto
 			find_first(
 				Range1T& Input,
 				const Range2T& Search)
 		{
-			return ::string_algo::algorithm::find(Input, ::string_algo::algorithm::first_finder(Search));
+			return ::string_algo::algorithm::find(Input, ::string_algo::algorithm::first_finder(as_literal(Search)));
 		}
 
 		//! Find first algorithm ( case insensitive )
@@ -137,13 +137,13 @@ namespace string_algo {
 			\note This function provides the strong exception-safety guarantee
 		*/
 		template<typename Range1T, typename Range2T>
-		inline std::span<typename Range1T::value_type>
+		inline auto
 			ifind_last(
 				Range1T& Input,
 				const Range2T& Search,
 				const std::locale& Loc = std::locale())
 		{
-			return ::string_algo::algorithm::find(Input, ::string_algo::algorithm::last_finder(Search, is_iequal(Loc)));
+			return ::string_algo::algorithm::find(Input, ::string_algo::algorithm::last_finder(as_literal(Search), is_iequal(Loc)));
 		}
 
 		//  find_nth ----------------------------------------------------------------------//
@@ -193,14 +193,14 @@ namespace string_algo {
 			\note This function provides the strong exception-safety guarantee
 		*/
 		template<typename Range1T, typename Range2T>
-		inline std::span<typename Range1T::value_type>
+		inline auto
 			ifind_nth(
 				Range1T& Input,
 				const Range2T& Search,
 				int Nth,
 				const std::locale& Loc = std::locale())
 		{
-			return ::string_algo::algorithm::find(Input, ::string_algo::algorithm::nth_finder(Search, Nth, is_iequal(Loc)));
+			return ::string_algo::algorithm::find(Input, ::string_algo::algorithm::nth_finder(string_algo::as_literal(Search), Nth, is_iequal(Loc)));
 		}
 
 		//  find_head ----------------------------------------------------------------------//

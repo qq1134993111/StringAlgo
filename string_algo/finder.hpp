@@ -32,14 +32,13 @@ namespace string_algo {
         */
         template<typename RangeT>
         inline detail::first_finderF<
-            typename  std::span<typename RangeT::value_type>,
+            typename  RangeT::iterator,
             is_equal>
         first_finder( const RangeT& Search )
         {
             return 
                 detail::first_finderF<
-                    typename 
-                        std::span<typename RangeT::value_type>,
+                typename  RangeT::iterator,
                         is_equal>( ::string_algo::as_literal(Search), is_equal() ) ;
         }
 
@@ -71,14 +70,13 @@ namespace string_algo {
         */
         template<typename RangeT>
         inline detail::last_finderF<
-            typename std::span<typename RangeT::value_type>,
+            typename RangeT::iterator,
             is_equal>
         last_finder( const RangeT& Search )
         {
             return 
                 detail::last_finderF<
-                    typename 
-                        std::span<typename RangeT::value_type>,
+                typename RangeT::iterator,
                     is_equal>( ::string_algo::as_literal(Search), is_equal() );
         }
         //! "Last" finder
@@ -87,14 +85,13 @@ namespace string_algo {
         */
         template<typename RangeT, typename PredicateT>
         inline detail::last_finderF<
-            typename std::span<typename RangeT::value_type>,
+            typename RangeT::iterator,
             PredicateT>
         last_finder( const RangeT& Search, PredicateT Comp )
         {
             return 
                 detail::last_finderF<
-                    typename 
-                        std::span<typename RangeT::value_type>,
+                   typename RangeT::iterator,
                     PredicateT>( ::string_algo::as_literal(Search), Comp ) ;
         }
 
@@ -110,7 +107,7 @@ namespace string_algo {
         */
         template<typename RangeT>
         inline detail::nth_finderF<
-            typename std::span<typename RangeT::value_type>,
+            typename RangeT::iterator,
             is_equal>
         nth_finder( 
             const RangeT& Search, 
@@ -118,8 +115,7 @@ namespace string_algo {
         {
             return 
                 detail::nth_finderF<
-                    typename 
-                        std::span<typename RangeT::value_type>,
+                typename RangeT::iterator,
                     is_equal>( ::string_algo::as_literal(Search), Nth, is_equal() ) ;
         }
         //! "Nth" finder
@@ -128,7 +124,7 @@ namespace string_algo {
         */
         template<typename RangeT, typename PredicateT>
         inline detail::nth_finderF<
-            typename std::span<typename RangeT::value_type>,
+            typename RangeT::iterator,
             PredicateT>
         nth_finder( 
             const RangeT& Search, 
@@ -137,8 +133,7 @@ namespace string_algo {
         {
             return 
                 detail::nth_finderF<
-                    typename 
-                        std::span<typename RangeT::value_type>,
+                typename RangeT::iterator,
                     PredicateT>( ::string_algo::as_literal(Search), Nth, Comp );
         }
 
