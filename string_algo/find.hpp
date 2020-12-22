@@ -224,7 +224,7 @@ namespace string_algo {
 					\note This function provides the strong exception-safety guarantee
 				*/
 		template<typename RangeT>
-		inline std::span<typename RangeT::value_type>
+		inline auto
 			find_head(
 				RangeT& Input,
 				int N)
@@ -254,7 +254,7 @@ namespace string_algo {
 					\note This function provides the strong exception-safety guarantee
 				*/
 		template<typename RangeT>
-		inline std::span<typename RangeT::value_type>
+		inline auto
 			find_tail(
 				RangeT& Input,
 				int N)
@@ -282,7 +282,7 @@ namespace string_algo {
 					\note This function provides the strong exception-safety guarantee
 				*/
 		template<typename RangeT, typename PredicateT>
-		inline std::span<typename RangeT::value_type>
+		inline auto
 			find_token(
 				RangeT& Input,
 				PredicateT Pred,
