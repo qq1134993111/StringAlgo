@@ -51,6 +51,8 @@ int main()
 	assert(str == s2);
 
 	bool b = false;
+	b = string_algo::starts_with(str, str);
+	b = string_algo::starts_with(str, "123");
 	b=string_algo::starts_with("123456789", "123");
 	assert(b);
 	b = string_algo::ends_with("123456789", "789", [](char ch1, char ch2)
@@ -58,6 +60,8 @@ int main()
 		return ch1 == ch2;
 	});
 	assert(b);
+	b = string_algo::contains(str, "456");
+	b = string_algo::contains(str, str);
 	b=string_algo::contains("1234567", "456");
 	assert(b);
 	b = string_algo::icontains("abcdef", "CDe");
@@ -66,18 +70,23 @@ int main()
 	assert(!b);
 	b=boost::contains("1234567", "456");
 	assert(b);
+	b = string_algo::iequals(str, str);
 	b = string_algo::iequals("abc", "Abc");
 	assert(b);
 	b = string_algo::iequals("abc", "AbC");
 	assert(b);
 
+	auto span_1 = string_algo::find_first(str, "word");
+	auto span_2 = string_algo::find_first(str, str);
 	auto span=string_algo::find_first("hello word", "word");
 
 	auto span2 = string_algo::ifind_last("hello word", "wOrD");
 
+	auto span3_2 = string_algo::ifind_nth("hello", str, 1);
+	auto span3_1 = string_algo::ifind_nth(str, "worD", 1);
 	auto span3 = string_algo::ifind_nth("hello world Word","worD",1);
 	
-	auto r=boost::find_first("hello", "ll");
+	//auto r=boost::find_first("hello", "ll");
 	
     std::cout << "Hello World!\n";
 }

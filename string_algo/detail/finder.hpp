@@ -36,12 +36,12 @@ namespace string_algo {
 
                 // Operation
                 template< typename ForwardIteratorT >
-                std::span<const typename ForwardIteratorT::value_type>
+                std::span<std::remove_pointer_t<typename ForwardIteratorT::pointer>>
                 operator()(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End ) const
                 {
-                    typedef std::span<const typename ForwardIteratorT::value_type> result_type;
+                    typedef std::span<std::remove_pointer_t<typename ForwardIteratorT::pointer>> result_type;
                     typedef ForwardIteratorT input_iterator_type;
 
                     // Outer loop
@@ -73,7 +73,7 @@ namespace string_algo {
 
             private:
               
-            	std::span<const typename search_iterator_type::value_type> m_Search;
+            	std::span<std::remove_pointer_t<typename search_iterator_type::pointer>> m_Search;
                 PredicateT m_Comp;
             };
 
@@ -104,12 +104,12 @@ namespace string_algo {
 
                 // Operation
                 template< typename ForwardIteratorT >
-                std::span<const typename ForwardIteratorT::value_type>
+                std::span<std::remove_pointer_t<typename  ForwardIteratorT::pointer>>
                 operator()(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End ) const
                 {
-                    typedef std::span<const typename  ForwardIteratorT::value_type> result_type;
+                    typedef std::span<std::remove_pointer_t<typename  ForwardIteratorT::pointer>> result_type;
 
                     if( m_Search.empty() )
                         return result_type( End, End );
@@ -123,13 +123,13 @@ namespace string_algo {
             private:
                 // forward iterator
                 template< typename ForwardIteratorT >
-                std::span<const typename  ForwardIteratorT::value_type>
+                std::span<std::remove_pointer_t<typename ForwardIteratorT::pointer>>
                 findit(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End,
                     std::forward_iterator_tag ) const
                 {
-                    typedef std::span<const typename  ForwardIteratorT::value_type> result_type;
+                    typedef std::span<std::remove_pointer_t<typename  ForwardIteratorT::pointer>> result_type;
 
                     first_finder_type first_finder(
                         m_Search.begin(), m_Search.end(), m_Comp );
@@ -148,13 +148,13 @@ namespace string_algo {
 
                 // bidirectional iterator
                 template< typename ForwardIteratorT >
-                std::span<const typename  ForwardIteratorT::value_type>
+                std::span<std::remove_pointer_t<typename  ForwardIteratorT::pointer>>
                 findit(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End,
                     std::bidirectional_iterator_tag ) const
                 {
-                    typedef std::span<const typename  ForwardIteratorT::value_type> result_type;
+                    typedef std::span<std::remove_pointer_t<typename  ForwardIteratorT::pointer>> result_type;
                     typedef ForwardIteratorT input_iterator_type;
 
                     // Outer loop
@@ -182,7 +182,7 @@ namespace string_algo {
                 }
 
             private:
-                std::span<const typename  search_iterator_type::value_type> m_Search;
+                std::span<std::remove_pointer_t<typename  search_iterator_type::pointer>> m_Search;
                 PredicateT m_Comp;
             };
 
@@ -224,7 +224,7 @@ namespace string_algo {
 
                 // Operation
                 template< typename ForwardIteratorT >
-                std::span<const typename ForwardIteratorT::value_type>
+                std::span<std::remove_pointer_t<typename  ForwardIteratorT::pointer>>
                 operator()(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End ) const
@@ -243,13 +243,13 @@ namespace string_algo {
             private:
                 // Implementation helpers
                 template< typename ForwardIteratorT >
-                std::span<const typename ForwardIteratorT::value_type>
+                std::span<std::remove_pointer_t<typename ForwardIteratorT::pointer>>
                 find_forward(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End,
                     unsigned int N) const
                 {
-                    typedef std::span<const typename  ForwardIteratorT::value_type> result_type;
+                    typedef std::span<std::remove_pointer_t<typename ForwardIteratorT::pointer>> result_type;
 
                     // Sanity check
                     if( m_Search.empty() )
@@ -277,13 +277,13 @@ namespace string_algo {
                 }
 
                 template< typename ForwardIteratorT >
-                std::span<const typename ForwardIteratorT::value_type>
+                std::span<std::remove_pointer_t<typename ForwardIteratorT::pointer>>
                 find_backward(
                     ForwardIteratorT Begin,
                     ForwardIteratorT End,
                     unsigned int N) const
                 {
-                    typedef std::span<const typename  ForwardIteratorT::value_type> result_type;
+                    typedef std::span<std::remove_pointer_t<typename  ForwardIteratorT::pointer>> result_type;
 
                     // Sanity check
                     if( m_Search.empty() )
@@ -312,7 +312,7 @@ namespace string_algo {
 
 
             private:
-                std::span<const typename search_iterator_type::value_type> m_Search;
+                std::span<std::remove_pointer_t<typename search_iterator_type::pointer>> m_Search;
                 int m_Nth;
                 PredicateT m_Comp;
             };
