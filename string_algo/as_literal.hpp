@@ -1,6 +1,7 @@
 
 #ifndef RANGE_AS_LITERAL_HPP
 #define RANGE_AS_LITERAL_HPP
+#define ITERATOR_DEBUG_LEVEL 0 
 #include <span>
 #include <cstring>
 #include <type_traits>
