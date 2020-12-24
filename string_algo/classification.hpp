@@ -190,10 +190,10 @@ namespace string_algo
 			\return An instance of the \c is_any_of predicate
 		*/
 		template<typename RangeT>
-		inline detail::is_any_ofF<RangeT>
+		inline auto/*detail::is_any_ofF<RangeT>*/
 			is_any_of(const RangeT& Set)
 		{
-			return detail::is_any_ofF<RangeT>(Set);
+			return detail::is_any_ofF<decltype(string_algo::as_literal(Set))>(string_algo::as_literal(Set));
 		}
 
 		//! is_from_range predicate

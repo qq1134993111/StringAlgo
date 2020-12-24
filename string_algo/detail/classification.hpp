@@ -58,7 +58,7 @@ namespace string_algo
 			{
 			private:
 				// set cannot operate on const value-type
-				typedef typename  std::remove_const<CharT>::type set_value_type;
+				typedef typename std::remove_const_t<std::remove_pointer_t<typename CharT::pointer>> set_value_type;
 
 			public:
 				// Boost.ResultOf support
