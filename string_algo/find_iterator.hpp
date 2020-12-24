@@ -268,7 +268,7 @@ namespace string_algo {
             }
 
 
-        private:
+        public:
         // iterator operations
 
             // dereference
@@ -295,6 +295,7 @@ namespace string_algo {
                 m_Next=FindMatch.end();
             }
 
+        private:
             // comparison
             bool equal( const split_iterator& Other ) const
             {

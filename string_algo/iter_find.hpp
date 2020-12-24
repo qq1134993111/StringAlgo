@@ -87,10 +87,18 @@ namespace string_algo {
                     copy_range_type());
 
             SequenceSequenceT Tmp(itBegin, itEnd);*/
-
-            auto r = find_iterator_type(::std::begin(lit_input), InputEnd, Finder);
                         
             //Result.swap(Tmp);
+
+            auto f = find_iterator_type(::std::begin(lit_input), InputEnd, Finder);
+            while (true)
+            {
+                Result.emplace(Result.end(), copy_range_type()(f.dereference()));
+                if (f.eof())
+                    break;
+                f.increment();
+            }
+        	
             return Result;
         }
 
@@ -133,7 +141,7 @@ namespace string_algo {
             typedef typename  RangeT::iterator input_iterator_type;
             typedef split_iterator<input_iterator_type> find_iterator_type;
             typedef detail::copy_iterator_rangeF<  
-                SequenceSequenceT,
+                typename SequenceSequenceT::value_type,
                 input_iterator_type> copy_range_type;
             
             input_iterator_type InputEnd=::std::end(lit_input);
@@ -154,16 +162,16 @@ namespace string_algo {
             //SequenceSequenceT Tmp(itBegin, itEnd);
 
             //Result.swap(Tmp);
+
+            auto f = find_iterator_type(::std::begin(lit_input), InputEnd, Finder);
             while (true)
             {
-                auto r = find_iterator_type(::std::begin(lit_input), InputEnd, Finder);
-               
-            	if(r.eof())
-                    break;;
+                Result.emplace(Result.end(), copy_range_type()(f.dereference()));
+            	if(f.eof())
+                    break;
+                f.increment();
             }
-        	
-          
-        	
+        
             return Result;
         }
 

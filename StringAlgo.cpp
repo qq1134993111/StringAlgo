@@ -97,6 +97,10 @@ int main()
 	auto span8 = string_algo::find_token("hahhaha333333",
 		[](char ch) { return ch == '3'; });
 
+	std::string test_str = "i am a student,you are a teacher!";
+	std::vector<std::string> vec;
+	string_algo::split(vec, test_str, string_algo::is_any_of(","), string_algo::token_compress_off);
+
 
 	std::cout << "Hello World!\n";
 }
