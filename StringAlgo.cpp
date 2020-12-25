@@ -126,7 +126,8 @@ int main()
 		[](auto& value) { return value.size() > 2; });
 	assert(v == v2);
 
-	string_algo::replace_all(test_str, "a", "Aa");
+	test_str = "hello world";
+	string_algo::replace_all(test_str, "l", "LL");
 	
 	std::cout << "Hello World!\n";
 }

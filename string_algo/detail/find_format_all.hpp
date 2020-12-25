@@ -221,13 +221,17 @@ namespace string_algo {
                 if ( Storage.empty() )
                 {
                     // Truncate input
-                    //::string_algo::algorithm::detail::erase( Input, InsertIt, ::std::end(Input) );
-                    Input.erase(InsertIt, ::std::end(Input));
+                    auto n= std::distance(std::begin(as_literal(Input)), InsertIt);
+                    auto b = Input.begin();
+                    std::advance(b, n);
+                    ::string_algo::algorithm::detail::erase( Input, b, ::std::end(Input) );
+                
                 }
                 else
                 {
                     // Copy remaining data to the end of input
-                    //::string_algo::algorithm::detail::insert( Input, ::std::end(Input), Storage.begin(), Storage.end() );
+                    ::string_algo::algorithm::detail::insert( Input, ::std::end(Input), Storage.begin(), Storage.end() );
+                 
                 }
             }
 
