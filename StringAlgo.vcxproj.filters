@@ -92,5 +92,17 @@
     <ClInclude Include="string_algo\detail\util.hpp">
       <Filter>string_algo\detail</Filter>
     </ClInclude>
+    <ClInclude Include="string_algo\join.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\detail\sequence.hpp">
+      <Filter>string_algo\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\sequence_traits.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\yes_no_type.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

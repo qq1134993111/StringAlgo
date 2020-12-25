@@ -11,7 +11,7 @@
 #include "predicate.hpp"
 #include "find.hpp"
 #include "split.hpp"
-//#include <boost/algorithm/string/join.hpp>
+#include "join.hpp"
 //#include <boost/algorithm/string/replace.hpp>
 //#include <boost/algorithm/string/erase.hpp>
 //#include <boost/algorithm/string/classification.hpp>

@@ -154,17 +154,21 @@
     <ClInclude Include="string_algo\detail\finder.hpp" />
     <ClInclude Include="string_algo\detail\find_iterator.hpp" />
     <ClInclude Include="string_algo\detail\predicate.hpp" />
+    <ClInclude Include="string_algo\detail\sequence.hpp" />
     <ClInclude Include="string_algo\detail\trim.hpp" />
     <ClInclude Include="string_algo\detail\util.hpp" />
     <ClInclude Include="string_algo\find.hpp" />
     <ClInclude Include="string_algo\finder.hpp" />
     <ClInclude Include="string_algo\find_iterator.hpp" />
     <ClInclude Include="string_algo\iter_find.hpp" />
+    <ClInclude Include="string_algo\join.hpp" />
     <ClInclude Include="string_algo\predicate.hpp" />
     <ClInclude Include="string_algo\predicate_facade.hpp" />
+    <ClInclude Include="string_algo\sequence_traits.hpp" />
     <ClInclude Include="string_algo\split.hpp" />
     <ClInclude Include="string_algo\string.hpp" />
     <ClInclude Include="string_algo\trim.hpp" />
+    <ClInclude Include="string_algo\yes_no_type.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

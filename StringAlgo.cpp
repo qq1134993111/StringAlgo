@@ -115,6 +115,17 @@ int main()
 	auto l1=boost::find_all(list2,test_str,"a");
 	auto l2=string_algo::find_all(list3, test_str, "a");
 	assert(list2==list3);
+
+	auto v=boost::join(vec, " , ");
+	auto v2=string_algo::join(vec," , ");
+	assert(v == v2);
+
+	v = boost::join_if(vec, " , ",
+		[](auto& value) { return value.size() > 2; });
+	v2 = string_algo::join_if(vec, " , ", 
+		[](auto& value) { return value.size() > 2; });
+	assert(v == v2);
+	
 	
 	std::cout << "Hello World!\n";
 }
