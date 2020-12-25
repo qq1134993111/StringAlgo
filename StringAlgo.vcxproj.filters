@@ -74,5 +74,23 @@
     <ClInclude Include="string_algo\find.hpp">
       <Filter>string_algo</Filter>
     </ClInclude>
+    <ClInclude Include="string_algo\concept.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\find_iterator.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\iter_find.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\split.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\detail\find_iterator.hpp">
+      <Filter>string_algo\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\detail\util.hpp">
+      <Filter>string_algo\detail</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

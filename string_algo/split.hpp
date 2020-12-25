@@ -56,8 +56,8 @@ namespace string_algo {
         {
             return ::string_algo::algorithm::iter_find(
                 Result,
-                Input,
-                ::string_algo::algorithm::first_finder(Search) );        
+                string_algo::as_literal(Input),
+                ::string_algo::algorithm::first_finder(string_algo::as_literal(Search)) );        
         }
 
         //! Find all algorithm ( case insensitive ) 
@@ -92,8 +92,8 @@ namespace string_algo {
         {
             return ::string_algo::algorithm::iter_find(
                 Result,
-                Input,
-                ::string_algo::algorithm::first_finder(Search, is_iequal(Loc) ) );        
+                string_algo::as_literal(Input),
+                ::string_algo::algorithm::first_finder(string_algo::as_literal(Search), is_iequal(Loc) ) );        
         }
 
 

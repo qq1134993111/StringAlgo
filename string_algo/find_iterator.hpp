@@ -98,7 +98,7 @@ namespace string_algo {
                 increment();
             }
 
-        private:
+        public:
         // iterator operations
 
             // dereference
@@ -112,7 +112,7 @@ namespace string_algo {
             {
                 m_Match=this->do_find(m_Match.end(),m_End);
             }
-
+        private:
             // comparison
             bool equal( const find_iterator& Other ) const
             {

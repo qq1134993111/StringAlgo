@@ -97,10 +97,24 @@ int main()
 	auto span8 = string_algo::find_token("hahhaha333333",
 		[](char ch) { return ch == '3'; });
 
-	std::string test_str = "i am a student,you are a teacher!";
-	std::vector<std::string> vec;
-	string_algo::split(vec, test_str, string_algo::is_any_of(","), string_algo::token_compress_off);
+	std::string test_str = " i am a student , you are a  teacher! ";
+	std::vector<std::string> vec,vec1,vec2,vec3;
+	boost::split(vec, test_str, boost::is_any_of(", "), boost::token_compress_off);
+	string_algo::split(vec1, test_str, string_algo::is_any_of(", "), string_algo::token_compress_off);
+	assert(vec==vec1);
 
+	boost::split(vec2, test_str, boost::is_any_of(", "), boost::token_compress_on);
+	string_algo::split(vec3, " i am a student , you are a  teacher! ", string_algo::is_any_of(", "), string_algo::token_compress_on);
+	assert(vec2 == vec3);
 
+	std::list<std::string> list,list1,list2,list3;
+	boost::ifind_all(list, test_str, "a");
+	string_algo::ifind_all(list1," i am a student , you are a  teacher! ","a");
+	assert(list == list1);
+
+	auto l1=boost::find_all(list2,test_str,"a");
+	auto l2=string_algo::find_all(list3, test_str, "a");
+	assert(list2==list3);
+	
 	std::cout << "Hello World!\n";
 }

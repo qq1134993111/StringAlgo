@@ -68,7 +68,7 @@ namespace string_algo {
             typedef typename  RangeT::iterator input_iterator_type;
             typedef find_iterator<input_iterator_type> find_iterator_type;
             typedef detail::copy_iterator_rangeF<
-                      SequenceSequenceT,
+                 typename  SequenceSequenceT::value_type,
                 input_iterator_type> copy_range_type;
             
             input_iterator_type InputEnd=::std::end(lit_input);
@@ -91,11 +91,9 @@ namespace string_algo {
             //Result.swap(Tmp);
 
             auto f = find_iterator_type(::std::begin(lit_input), InputEnd, Finder);
-            while (true)
+            while (!f.eof())
             {
                 Result.emplace(Result.end(), copy_range_type()(f.dereference()));
-                if (f.eof())
-                    break;
                 f.increment();
             }
         	
@@ -164,11 +162,9 @@ namespace string_algo {
             //Result.swap(Tmp);
 
             auto f = find_iterator_type(::std::begin(lit_input), InputEnd, Finder);
-            while (true)
+            while (!f.eof())
             {
-                Result.emplace(Result.end(), copy_range_type()(f.dereference()));
-            	if(f.eof())
-                    break;
+                Result.emplace(Result.end(), copy_range_type()(f.dereference()));     
                 f.increment();
             }
         
