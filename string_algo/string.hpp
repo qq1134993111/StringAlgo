@@ -12,7 +12,7 @@
 #include "find.hpp"
 #include "split.hpp"
 #include "join.hpp"
-//#include <boost/algorithm/string/replace.hpp>
+#include "replace.hpp"
 //#include <boost/algorithm/string/erase.hpp>
 //#include <boost/algorithm/string/classification.hpp>
 //#include <boost/algorithm/string/find_iterator.hpp>

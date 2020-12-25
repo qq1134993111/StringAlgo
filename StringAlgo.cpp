@@ -125,7 +125,8 @@ int main()
 	v2 = string_algo::join_if(vec, " , ", 
 		[](auto& value) { return value.size() > 2; });
 	assert(v == v2);
-	
+
+	string_algo::replace_all(test_str, "a", "Aa");
 	
 	std::cout << "Hello World!\n";
 }

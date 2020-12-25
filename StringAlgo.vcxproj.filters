@@ -104,5 +104,29 @@
     <ClInclude Include="string_algo\yes_no_type.hpp">
       <Filter>string_algo</Filter>
     </ClInclude>
+    <ClInclude Include="string_algo\replace.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\find_format.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\formatter.hpp">
+      <Filter>string_algo</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\detail\find_format.hpp">
+      <Filter>string_algo\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\detail\find_format_all.hpp">
+      <Filter>string_algo\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\detail\formatter.hpp">
+      <Filter>string_algo\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\detail\find_format_store.hpp">
+      <Filter>string_algo\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="string_algo\detail\replace_storage.hpp">
+      <Filter>string_algo\detail</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
